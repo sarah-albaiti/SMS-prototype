@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>SMS · Release 1 · Clickable prototype</title>
+<title>SMS · Release 1 · Prototype</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>:root{
   --pri:#8A1538;--pri-700:#7A1232;--pri-800:#650E2A;--pri-500:#A3214B;--pri-400:#B23A5E;--pri-200:#E7A9BC;--pri-100:#F8E9ED;--pri-50:#FBF7F8;
@@ -551,6 +551,9 @@ textarea.inp{height:auto;min-height:96px;padding:12px 14px;resize:vertical;outli
 .reqcta li{display:flex;align-items:center;gap:10px;font-size:14px;color:#F6DCE4}
 .reqcta li span{width:30px;height:30px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.2);color:#fff;flex-shrink:0}
 .reqcta .hbtn{align-self:flex-start;margin-top:auto}
+.walk{max-width:calc(100vw - 32px);width:max-content}
+.walk>span{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.walk button{white-space:nowrap;flex-shrink:0;display:inline-flex;align-items:center;gap:6px;line-height:1;height:34px;padding:0 16px}
 </style></head>
 <body><div id="app"></div><script>
 /* icons.js */
@@ -672,7 +675,7 @@ const FLOWS=[
  ['WF-06','Request a meeting','Parent → Teacher',['PA-05','TE-07']],
  ['WF-07','Activate an account','Parent/Student',['SH-03a','SH-03b','SH-03c','SH-04a','SH-04b','PA-01']],
  ['WF-08','Share study material','Teacher → Student',['TE-06','ST-05']]];
-reg('HUB',null,'Prototype map',()=>`<div class="hub screen"><div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:20px;margin-bottom:28px"><div><div class="pub"><span class="k" style="font-size:13px;font-weight:700;letter-spacing:.08em;color:var(--pri)">SMS · RELEASE 1 · CLICKABLE PROTOTYPE</span></div><h1>School Management System</h1><p class="muted" style="font-size:17px;max-width:760px">Start from any screen, or follow one of the eight end-to-end workflows. Every menu item, button and link moves you through the prototype. Use the dark buttons in the bottom corner to come back here.</p></div><div style="display:flex;gap:10px;flex-wrap:wrap">${btn('Open public website','sec',{icon:'web',attr:'data-go="SH-01"'})}${btn('Start at sign in','pri',{icon:'lock',attr:'data-go="SH-04a"'})}</div></div>
+reg('HUB',null,'Prototype map',()=>`<div class="hub screen"><div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:20px;margin-bottom:28px"><div><span style="display:block;font-size:13px;font-weight:700;letter-spacing:.08em;color:var(--pri);margin-bottom:6px">SMS · RELEASE 1 · PROTOTYPE</span><h1>School Management System</h1><p class="muted" style="font-size:17px;max-width:760px">Start from any screen, or follow one of the eight end-to-end workflows. Every menu item, button and link moves you through the prototype. Use the dark buttons in the bottom corner to come back here.</p></div><div style="display:flex;gap:10px;flex-wrap:wrap">${btn('Open public website','sec',{icon:'web',attr:'data-go="SH-01"'})}${btn('Start at sign in','pri',{icon:'lock',attr:'data-go="SH-04a"'})}</div></div>
 <h2 style="font-size:22px;font-weight:800;margin-bottom:14px">Workflows</h2><div class="grid4" style="margin-bottom:32px">${FLOWS.map(f=>`<div class="wf" data-walk="${f[0]}" role="button" tabindex="0"><span class="tag t-pri" style="align-self:flex-start">${f[0]}</span><b style="font-size:16px">${f[1]}</b><span class="small muted">${f[2]}</span><span class="xs muted">${f[3].join(' → ')}</span></div>`).join('')}</div>
 <h2 style="font-size:22px;font-weight:800;margin-bottom:14px">Screens by role</h2><div class="grid3">${LANES.map(l=>`<div class="lane"><h3>${l[0]}</h3>${l[2].map(id=>`<div class="sid" data-go="${id}" role="button" tabindex="0"><code>${id.replace('ar/','AR · ')}</code><span>${(META[id.replace('ar/','')]||{}).name||id}</span></div>`).join('')}</div>`).join('')}</div></div>`);
 
